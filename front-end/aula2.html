@@ -12,41 +12,146 @@
         />
     </head>
     <body class="min-vh-100 d-flex flex-column">
-        <div class="container mt-4">
-            <header class="row mb-4">
-                <div class="col-lg-10">
-                    <h2>Aula 2 - Introdução ao HTML</h1>
-                    <h4>Eng. Computação - SATC</h2>
+        <nav
+            class="navbar bg-dark border-bottom border-body navbar-expand-lg"
+            data-bs-theme="dark"
+        >
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="https://pagamentos.satc.edu.br/pagamentos/assets/img/satc_edu_v2.png"
+                        alt="Satc"
+                        height="60"
+                    />
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#cadastro"
+                                >Cadastro</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contato">Contato</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-lg-2">
-                    <img class="img-fluid" src="https://pagamentos.satc.edu.br/pagamentos/assets/img/satc_edu_v2.png" alt="" srcset="">
-                </div>
-            </header>
+            </div>
+        </nav>
+        <section id="inscricao" class="container mt-4">
+            <h2>Formulário de Inscrição</h2>
+            <p>
+                Preencha os dados abaixo para participar do nosso curso na SATC
+            </p>
             <form>
-                <div class="row">
-                    <div class="col">
-                        <label for="nome" class="form-label">Nome: </label>
-                        <input id="nome" type="text" class="form-control">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="nome" class="form-label">Nome: </label>
+                            <input id="nome" type="text" class="form-control" />
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="email" class="form-label"
+                                >E-mail:
+                            </label>
+                            <input
+                                id="email"
+                                type="text"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input
+                                id="senha"
+                                type="password"
+                                class="form-control"
+                            />
+                        </div>
                     </div>
-                    <div class="col">
-                        <label for="email" class="form-label">email: </label>
-                        <input id="email" type="text" class="form-control">
+                    <div class="row mt-2">
+                        <div class="col-lg-4">
+                            <label for="curso" class="form-label"
+                                >Curso:
+                            </label>
+                            <input
+                                id="curso"
+                                type="text"
+                                class="form-control"
+                            />
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="porque" class="form-label">
+                                Por que deseja participar?
+                            </label>
+                            <textarea
+                                id="porque"
+                                class="form-control"
+                                rows="1"
+                            ></textarea>
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="turno" class="form-label"
+                                >Turno desejado:</label
+                            >
+                            <select id="turno" class="form-select">
+                                <option value="manha" selected>Manhã</option>
+                                <option value="tarde">Tarde</option>
+                                <option value="noite">Noite</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col">
-                        <label for="telefone" class="form-label">telefone: </label>
-                        <input id="telefone" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-success mt-4">
+                        Cadastrar
+                    </button>
+                </fieldset>
             </form>
-        </div>
+        </section>
+        <section id="contato" class="container mt-4 mt-lg-auto">
+            <h2>Informações de Contato</h2>
+            <div class="row">
+                <div class="col-lg-1">
+                    <b>E-Mail </b>
+                </div>
+                <div class="col-lg-1">contato@satc.edu.br</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1">
+                    <b>Telefone </b>
+                </div>
+                <div class="col-lg-2">(48) 3431-7500</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1">
+                    <b>Endereço </b>
+                </div>
+                <div class="col-lg-3">
+                    Rua Pascoal Meller, 73 - Criciúma, SC
+                </div>
+            </div>
+            <hr />
+            <p class="text-center text-lg-start">
+                Atendimento de segunda a sexta, das 8h às 22h. <br />
+                Acompanhe também nossas redes sociais para ficar dentro das
+                novidades!
+            </p>
+        </section>
         <footer class="d-flex justify-content-center mt-auto mb-4">
             <div class="text-center">
-                Feito por Pedro Virtuozo <br>
+                Feito por Pedro Virtuozo <br />
+                Todos os direitos reservados <br />
                 2025
             </div>
         </footer>
