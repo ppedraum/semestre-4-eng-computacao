@@ -1,0 +1,9 @@
+Javascript
+---------------
+
+Manipulação e interação com elementos HTML
+Lógica de programação
+Requisitar e enviar dados e informações utilizando AJAX
+
+Utiliza-se a tag <script> para utilizar o Javascript dentro do HTML
+<script src=""> para utilizar o javascript em um arquivo externo 

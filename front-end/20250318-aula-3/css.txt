@@ -1,0 +1,37 @@
+CSS
+-----
+Aplicado no elemento (inline), na tag head (tag style) ou como arquivo externo .css (import) utilizando a tag link.
+
+Seletores
+-----
+
+Formas de referenciar um elemento ou um conjunto de elementos.
+
+Seletor de tag:
+
+    p {
+        color: red;
+    }
+
+Seletor de classe:
+
+    .destaque{
+        color: red;
+    }
+
+
+Seletor de id:
+
+    #titulo{
+        color: red;
+    }
+
+Ordens de precedência
+----
+Quando você coloca vários estilos em vários seletores diferentes, existe uma hierarquia onde o "mais forte"
+dá o estilo, enquanto os outros não surtem efeito
+
+4. Tag (H1)
+3. Classe (.hello)
+2. Id (#nome)
+1. Inline(style="") 
