@@ -244,10 +244,12 @@
                 //Copia modificada que vai no return
                 let dadosOutput = [];
                 for (d of dados) {
+                    //Desestruturando como o professor pediu
+                    const { descricao, completa } = d;
                     //Colocando apenas os dados que queremos no formato que queremos
                     dadosOutput.push({
-                        descricao: d['descricao'],
-                        completa: d['completa'].checked,
+                        descricao: descricao,
+                        completa: completa.checked,
                     });
                 }
                 return dadosOutput;
