@@ -187,21 +187,12 @@
                     <div class="chat-area-contato">
                         <b>Pedro Virtuozo</b>
                         <img
-                            src="https://i.pinimg.com/736x/47/30/38/473038bf60343d88ccb4188c0df1c544.jpg"
+                            src="https://media.licdn.com/dms/image/v2/D4E03AQEb7Gvv5qq_MQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1707758686487?e=2147483647&v=beta&t=lGZ40MPlcyr0BEmfAExy0tPhbk8v_p-szNn4t_knHrk"
                             alt=""
                             class="chat-img"
                         />
                     </div>
-                    <div id="divMsgs" class="chat-mensagens">
-                        <div class="chat-bubble">
-                            <div class="chat-bubble-content">
-                                Não acredito nisso
-                            </div>
-                        </div>
-                        <div class="chat-bubble chat-bubble-user">
-                            <div class="chat-bubble-content">Sério!</div>
-                        </div>
-                    </div>
+                    <div id="divMsgs" class="chat-mensagens"></div>
                     <div class="chat-input">
                         <div class="input-group">
                             <input id="ipt" type="text" class="form-control" />
@@ -223,6 +214,7 @@
                                 </span>
                             </button>
                         </div>
+                        <div id="divDigitando" class="small"></div>
                     </div>
                 </div>
             </div>
@@ -243,14 +235,24 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"
         ></script>
+        <script src="/socket.io/socket.io.js"></script>
         <script>
-            function enviarMsg() {
-                let divMsgs = document.getElementById('divMsgs');
-                let ipt = document.getElementById('ipt');
+            let divMsgs = document.getElementById('divMsgs');
+            let ipt = document.getElementById('ipt');
 
-                if (ipt.value == '') {
+            let socket = io();
+            let user = prompt('Digite seu nome:');
+
+            let isDigitando = false;
+
+            socket.emit('user joined', user);
+
+            function enviarMsg() {
+                if (!ipt.value) {
                     return;
                 }
+
+                socket.emit('chat message', { user: user, msg: ipt.value });
 
                 let bubble = document.createElement('div');
                 let bubbleContent = document.createElement('div');
@@ -264,6 +266,53 @@
                 bubble.append(bubbleContent);
                 divMsgs.prepend(bubble);
             }
+
+            $('#ipt').on('keydown', (evt) => {
+                if (evt.key == 'Enter') {
+                    enviarMsg();
+                    return;
+                }
+            });
+
+            $('#ipt').on('change', (evt) => {
+                if (!isDigitando && ipt.value) {
+                    isDigitando = true;
+
+                    socket.emit('user typing', user);
+                } else if (isDigitando && !ipt.value) {
+                    isDigitando = false;
+
+                    socket.emit('user stopped typing', user);
+                }
+            });
+
+            socket.on('chat message', (msg) => {
+                let bubble = document.createElement('div');
+                let bubbleContent = document.createElement('div');
+
+                bubbleContent.textContent = msg.user + ': ' + msg.msg;
+
+                bubble.className = 'chat-bubble';
+                bubbleContent.className = 'chat-bubble-content';
+
+                bubble.append(bubbleContent);
+                divMsgs.prepend(bubble);
+            });
+            socket.on('user joined', (user) => {
+                alert = document.createElement('div');
+                alert.className = 'alert alert-secondary text-center';
+                alert.textContent = user + ' entrou na conversa';
+
+                divMsgs.prepend(alert);
+            });
+            socket.on('user typing', (user) => {
+                let divDigitando = document.getElementById('divDigitando');
+                divDigitando.textContent = user + ' está digitando...';
+            });
+            socket.on('user stopped typing', (user) => {
+                let divDigitando = document.getElementById('divDigitando');
+                divDigitando.textContent = '';
+            });
         </script>
     </body>
 </html>
