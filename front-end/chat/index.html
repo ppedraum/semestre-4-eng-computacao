@@ -235,16 +235,19 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"
         ></script>
+        <!-- localização do socket.io-client -->
         <script src="/socket.io/socket.io.js"></script>
         <script>
             let divMsgs = document.getElementById('divMsgs');
             let ipt = document.getElementById('ipt');
 
+            //implementação do socket.io-client
             let socket = io();
             let user = prompt('Digite seu nome:');
 
             let isDigitando = false;
 
+            //envia um evento 'user joined ' ao servidor, com o nome do usuario
             socket.emit('user joined', user);
 
             function enviarMsg() {
@@ -252,6 +255,7 @@
                     return;
                 }
 
+                //envia a mensagem digitada para o servidor
                 socket.emit('chat message', { user: user, msg: ipt.value });
 
                 let bubble = document.createElement('div');
@@ -274,6 +278,7 @@
                 }
             });
 
+            //Para aparecer 'x está digitando' ou desaparecer
             $('#ipt').on('change', (evt) => {
                 if (!isDigitando && ipt.value) {
                     isDigitando = true;
@@ -286,6 +291,7 @@
                 }
             });
 
+            //Quando o client receber um evento 'chat message', aparece a mensagem com o nome de usuário no chat
             socket.on('chat message', (msg) => {
                 let bubble = document.createElement('div');
                 let bubbleContent = document.createElement('div');
@@ -298,6 +304,7 @@
                 bubble.append(bubbleContent);
                 divMsgs.prepend(bubble);
             });
+            //Quando um usuário entra, aparece um alert no chat
             socket.on('user joined', (user) => {
                 alert = document.createElement('div');
                 alert.className = 'alert alert-secondary text-center';
@@ -305,10 +312,12 @@
 
                 divMsgs.prepend(alert);
             });
+            //Quando um usuário está digitando, aparece embaixo do input
             socket.on('user typing', (user) => {
                 let divDigitando = document.getElementById('divDigitando');
                 divDigitando.textContent = user + ' está digitando...';
             });
+            //Quando um usuário para de digitar, desaparece o texto
             socket.on('user stopped typing', (user) => {
                 let divDigitando = document.getElementById('divDigitando');
                 divDigitando.textContent = '';
