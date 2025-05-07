@@ -1,0 +1,14 @@
+<div>
+  <h1>Todo List</h1>
+  <input [(ngModel)]="currentTask" (keyup.enter)="enviar()" type="text" />
+  <button (click)="enviar()">Enviar</button>
+  <ul>
+    <!-- track $index = identificação unica baseada no index para cada li -->
+    @for (task of taskList(); track $index) {
+    <li>
+      {{ task }}
+      <button>X</button>
+    </li>
+    }
+  </ul>
+</div>
