@@ -1,27 +1,3 @@
-<h1>Contador = {{ contador() }}</h1>
-<button (click)="incrementar()">Incrementar</button>
-<button (click)="decrementar()">Decrementar</button>
-<br />
-
-@if(contador() > 10){
-<img
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3QPArQOZeQCvAiaDD9iuOGTbstrtqx-bwATMfE8BGIRcC3fA3q2qpLRTM-uAb8h3mcos&usqp=CAU"
-  alt="floppa"
-/>
-}@else if(contador() < 0){
-<img
-  src="https://infutilidades.wordpress.com/wp-content/uploads/2012/02/breading-cats.jpg"
-  alt="floppa"
-/>
-}@else {
-<img
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTQ5qJSuiqdw6gefDdpaDS8-V1iQMcL3HX9A&s"
-  alt=""
-/>
-}
-<br />
-<h1>MOSTRADOR DE IMAGENS</h1>
-<button (click)="anterior()">Anterior</button>
-<button (click)="proximo()">Proximo</button>
-<br />
-<img [src]="listaImgs()[imgIndex()]" />
+<app-contador />
+<app-mostrador-imagens />
+<app-todo />
